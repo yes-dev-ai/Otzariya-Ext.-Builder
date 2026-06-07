@@ -96,13 +96,31 @@
                     </div>
                     <div class="grid grid-cols-2 gap-4">
                         <div class="relative">
-                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">גרסה</label>
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">גרסה (SemVer)</label>
                             <input type="text" id="p-version" value="1.0.0" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 code-font focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none">
                         </div>
                         <div class="relative">
                             <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">מחבר</label>
                             <input type="text" id="p-author" value="Otzaria User" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none">
                         </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="relative">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">דף בית (homepage)</label>
+                            <input type="text" id="p-homepage" value="" placeholder="https://github.com/..." class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 code-font focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none" dir="ltr">
+                        </div>
+                        <div class="relative">
+                            <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">יציבות</label>
+                            <select id="p-stability" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 code-font focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none">
+                                <option value="stable">stable</option>
+                                <option value="beta" selected>beta</option>
+                                <option value="experimental">experimental</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">גרסת אוצריא מינימלית (minAppVersion)</label>
+                        <input type="text" id="p-minappversion" value="0.9.0" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 code-font focus:bg-white focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none">
                     </div>
                 </div>
             </div>
@@ -123,11 +141,23 @@
                     </div>
                     <div class="relative">
                         <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5 flex justify-between items-center">
-                            קוד אייקון
+                            שם אייקון FluentUI (24px)
                             <a href="https://github.com/microsoft/fluentui-system-icons" target="_blank" class="text-[10px] text-indigo-600 hover:underline">גלריה &nearr;</a>
                         </label>
-                        <input type="number" id="t-icon" value="63742" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 code-font focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none">
+                        <input type="text" id="t-icon" value="book_24_regular" placeholder="book_24_regular" dir="ltr" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 code-font focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none">
+                        <p class="text-[11px] text-slate-500 mt-1">שם אייקון מ-FluentUI System Icons בגודל 24, חייב להסתיים ב-<span class="code-font">_24_regular</span> או <span class="code-font">_24_filled</span>.</p>
                     </div>
+                    <div class="relative">
+                        <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">סדר הופעה (order)</label>
+                        <input type="number" id="t-order" value="100" class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 code-font focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none">
+                    </div>
+                </div>
+                <div id="published-types-wrap" class="hidden mt-4">
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">
+                        publishedDataTypes (מופרדים בפסיקים)
+                    </label>
+                    <input type="text" id="p-published-types" value="calendar.event" placeholder="calendar.event, saved.query, ..." class="w-full bg-slate-50 border border-slate-200 rounded-lg px-3.5 py-2.5 text-sm text-slate-800 code-font focus:bg-white focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 outline-none" dir="ltr">
+                    <p class="text-[11px] text-slate-500 mt-1">סוגים נתמכים: calendar.event, saved.query, note.draft, reference.link, tool.badge</p>
                 </div>
             </div>
 
@@ -184,6 +214,57 @@
                     </div>
                     <textarea id="code-editor" class="absolute inset-0 w-full h-full py-4 pl-4 pr-14 code-font text-[13px] leading-[1.4rem] bg-transparent text-[#cdd6f4] outline-none resize-none dark-scroll" spellcheck="false" placeholder="<!-- הקוד שלך כאן... -->"></textarea>
                 </div>
+            </div>
+
+            <!-- Extra Files Card -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200/60 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-1.5 h-full bg-amber-500"></div>
+                <div class="flex items-center justify-between mb-3 pr-3">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-amber-50 text-amber-600 p-1.5 rounded-lg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" /></svg>
+                        </div>
+                        <h2 class="text-lg font-bold text-slate-800">קבצים נוספים בתוסף</h2>
+                    </div>
+                    <label class="cursor-pointer bg-amber-500 hover:bg-amber-600 text-white px-3 py-1.5 rounded text-xs font-bold transition-colors flex items-center gap-1.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+                        הוסף קבצים
+                        <input type="file" id="extra-files-upload" multiple class="hidden">
+                    </label>
+                </div>
+                <p class="text-xs text-slate-500 mb-3 pr-3 leading-relaxed">
+                    אפשר להוסיף לתוסף קבצי <span class="code-font">CSS</span>, <span class="code-font">JS</span>, <span class="code-font">TS</span>, גופנים (<span class="code-font">.woff2</span>, <span class="code-font">.ttf</span>, <span class="code-font">.otf</span>), תמונות וכל קובץ סטטי אחר. הם יישמרו ב-<span class="code-font">root</span> של ה-ZIP ויהיו זמינים מקובץ ה-HTML שלך בנתיב יחסי (לדוגמה <span class="code-font" dir="ltr">&lt;link href="rubik.css"&gt;</span>).
+                </p>
+                <div id="extra-files-list" class="space-y-2 pr-3 mb-3"></div>
+                <details class="bg-slate-50 border border-slate-200 rounded-lg p-3 text-xs text-slate-700">
+                    <summary class="cursor-pointer font-bold text-slate-800">מקורות רשמיים מומלצים להורדת קבצים</summary>
+                    <ul class="mt-3 space-y-2 list-disc pr-5">
+                        <li>
+                            <strong>גופן רוביק (Rubik):</strong>
+                            <a href="https://fonts.google.com/specimen/Rubik?script=Hebr&preview.script=Hebr" target="_blank" class="text-amber-700 hover:underline" dir="ltr">fonts.google.com/specimen/Rubik</a>
+                            — לחץ על "Get font" → "Download all".
+                        </li>
+                        <li>
+                            <strong>גופנים עבריים נוספים:</strong>
+                            <a href="https://fonts.google.com/?subset=hebrew" target="_blank" class="text-amber-700 hover:underline" dir="ltr">fonts.google.com (Hebrew subset)</a>
+                        </li>
+                        <li>
+                            <strong>אייקוני FluentUI (שמות):</strong>
+                            <a href="https://github.com/microsoft/fluentui-system-icons" target="_blank" class="text-amber-700 hover:underline" dir="ltr">FluentUI System Icons</a>
+                            — השתמש בשם בגודל 24, למשל <span class="code-font">book_24_regular</span> או <span class="code-font">calendar_24_filled</span>.
+                        </li>
+                        <li>
+                            <strong>Tailwind כקובץ סטטי (אופליין מלא):</strong>
+                            <a href="https://cdn.tailwindcss.com" target="_blank" class="text-amber-700 hover:underline" dir="ltr">cdn.tailwindcss.com</a>
+                            — שמור Save-As ל-<span class="code-font">tailwind.js</span>.
+                        </li>
+                        <li>
+                            <strong>Heroicons / Lucide (SVG):</strong>
+                            <a href="https://heroicons.com/" target="_blank" class="text-amber-700 hover:underline" dir="ltr">heroicons.com</a>,
+                            <a href="https://lucide.dev/" target="_blank" class="text-amber-700 hover:underline" dir="ltr">lucide.dev</a>
+                        </li>
+                    </ul>
+                </details>
             </div>
 
             <!-- Export Options -->
@@ -287,8 +368,8 @@
  * You do NOT need to include it manually — it is always available as `window.Otzaria`.
  *
  * Usage:
- * const result = await Otzaria.call('library.findBooks', { query: 'רמב"ם' });
- * Otzaria.on('plugin.boot', (payload) => { /* use payload.theme, payload.app ... */ });
+ *   const result = await Otzaria.call('library.findBooks', { query: 'רמב"ם' });
+ *   Otzaria.on('plugin.boot', (payload) => { /* use payload.theme, payload.app ... *\/ });
  *
  * Full documentation: docs/plugin-development-guide.md
  */
@@ -321,10 +402,10 @@
  * @typedef {Object} ThemePayload
  * @property {'light'|'dark'} mode
  * @property {{ primary:string, onPrimary:string, secondary:string, onSecondary:string,
- * surface:string, onSurface:string, surfaceContainerHighest:string,
- * error:string, onError:string, outline:string }} colorScheme
+ *              surface:string, onSurface:string, surfaceContainerHighest:string,
+ *              error:string, onError:string, outline:string }} colorScheme
  * @property {{ fontFamily:string, fontSize:number, lineHeight:number,
- * commentatorsFontFamily:string, commentatorsFontSize:number }} typography
+ *              commentatorsFontFamily:string, commentatorsFontSize:number }} typography
  */
 
 /**
@@ -480,18 +561,18 @@ const OtzariaPluginSDK = {
    * Subscribe to a host event.
    *
    * Built-in events:
-   * - `plugin.boot`                   — {@link BootPayload}, fired once
-   * - `plugin.ready`                  — no payload, fired once
-   * - `theme.changed`                 — {@link ThemePayload}
-   * - `navigation.changed`            — { screen: string }
-   * - `reader.current_book_changed`   — { book: string, index: number }
-   * - `reader.current_ref_changed`    — { currentBook: string|null, currentBookId: string|null, currentIndex: number, currentRef: string|null }
-   * - `calendar.date_changed`         — { date: string } (ISO 8601)
-   * - `workspace.changed`             — { workspaceId: string }
-   * - `settings.changed`              — { key: string, newValue: * }
-   * - `plugin.permissions_changed`    — { permissions: string[] }
-   * - `reader.selection_changed`      — { text, currentRef, currentBook, currentBookId, currentIndex } (requires events.subscribe:reader.selection_changed)
-   * - `reader.context_menu_item_clicked` — { itemId, selectedText, currentRef, currentBook, currentBookId, currentIndex }
+   *  - `plugin.boot`                   — {@link BootPayload}, fired once
+   *  - `plugin.ready`                  — no payload, fired once
+   *  - `theme.changed`                 — {@link ThemePayload}
+   *  - `navigation.changed`            — { screen: string }
+   *  - `reader.current_book_changed`   — { book: string, index: number }
+   *  - `reader.current_ref_changed`    — { currentBook: string|null, currentBookId: string|null, currentIndex: number, currentRef: string|null }
+   *  - `calendar.date_changed`         — { date: string } (ISO 8601)
+   *  - `workspace.changed`             — { workspaceId: string }
+   *  - `settings.changed`              — { key: string, newValue: * }
+   *  - `plugin.permissions_changed`    — { permissions: string[] }
+   *  - `reader.selection_changed`      — { text, currentRef, currentBook, currentBookId, currentIndex } (requires events.subscribe:reader.selection_changed)
+   *  - `reader.context_menu_item_clicked` — { itemId, selectedText, currentRef, currentBook, currentBookId, currentIndex }
    *
    * @param {string}            event
    * @param {function(*):void}  callback
@@ -512,7 +593,7 @@ const OtzariaPluginSDK = {
   off: function(event, callback) {},
 
   // =========================================================================
-  // app.* Permission: app.info.read
+  // app.*        Permission: app.info.read
   // =========================================================================
 
   /**
@@ -558,7 +639,7 @@ const OtzariaPluginSDK = {
   'app.getGrantedPermissions': null,
 
   // =========================================================================
-  // library.* Permission: library.books.read / library.content.read
+  // library.*    Permission: library.books.read / library.content.read
   // =========================================================================
 
   /**
@@ -589,7 +670,7 @@ const OtzariaPluginSDK = {
    * @returns {string}
    * @example
    * const { data: text } = await Otzaria.call('library.getBookContent', {
-   * bookId: 'בראשית', offset: 0, limit: 2000
+   *   bookId: 'בראשית', offset: 0, limit: 2000
    * });
    */
   'library.getBookContent': null,
@@ -602,7 +683,7 @@ const OtzariaPluginSDK = {
   'library.getBookToc': null,
 
   // =========================================================================
-  // search.* Permission: search.fulltext.read
+  // search.*     Permission: search.fulltext.read
   // =========================================================================
 
   /**
@@ -611,13 +692,13 @@ const OtzariaPluginSDK = {
    * @returns {SearchResult[]}
    * @example
    * const { data } = await Otzaria.call('search.fullText', {
-   * query: 'ואהבת לרעך כמוך', limit: 20
+   *   query: 'ואהבת לרעך כמוך', limit: 20
    * });
    */
   'search.fullText': null,
 
   // =========================================================================
-  // reader.* Permission: reader.open
+  // reader.*     Permission: reader.open
   // =========================================================================
 
   /**
@@ -668,7 +749,7 @@ const OtzariaPluginSDK = {
   'navigation.goTo': null,
 
   // =========================================================================
-  // notes.* Permission: notes.read / notes.write
+  // notes.*      Permission: notes.read / notes.write
   // =========================================================================
 
   /**
@@ -699,7 +780,7 @@ const OtzariaPluginSDK = {
   'notes.delete': null,
 
   // =========================================================================
-  // ui.* Permission: ui.feedback
+  // ui.*         Permission: ui.feedback
   // =========================================================================
 
   /**
@@ -720,7 +801,7 @@ const OtzariaPluginSDK = {
    * @returns {{ confirmed:boolean }}
    * @example
    * const { data } = await Otzaria.call('ui.showConfirm', {
-   * title: 'מחיקה', content: 'האם למחוק?'
+   *   title: 'מחיקה', content: 'האם למחוק?'
    * });
    * if (data.confirmed) { ... }
    */
@@ -734,7 +815,7 @@ const OtzariaPluginSDK = {
   'ui.showWarning': null,
 
   // =========================================================================
-  // storage.* Permission: plugin.storage.read / plugin.storage.write
+  // storage.*    Permission: plugin.storage.read / plugin.storage.write
   // =========================================================================
 
   /**
@@ -762,18 +843,18 @@ const OtzariaPluginSDK = {
   'storage.list': null,
 
   // =========================================================================
-  // settings.* Permission: settings.read
+  // settings.*   Permission: settings.read
   // =========================================================================
 
   /**
    * Read one allowlisted setting.
    *
    * Allowed keys:
-   * keyDarkMode, keyFollowSystemTheme, keySwatchColor, keyDarkSwatchColor,
-   * keyFontSize, keyFontFamily, keyCommentatorsFontFamily, keyCommentatorsFontSize,
-   * keyLineHeight, keySelectedCity, keyCalendarType, keyShowTeamim,
-   * keyDefaultNikud, keyRemoveNikudFromTanach, keyReplaceHolyNames,
-   * keyLibraryViewMode, keyAlignTabsToRight, keyCopyWithHeaders, keyCopyHeaderFormat
+   *   keyDarkMode, keyFollowSystemTheme, keySwatchColor, keyDarkSwatchColor,
+   *   keyFontSize, keyFontFamily, keyCommentatorsFontFamily, keyCommentatorsFontSize,
+   *   keyLineHeight, keySelectedCity, keyCalendarType, keyShowTeamim,
+   *   keyDefaultNikud, keyRemoveNikudFromTanach, keyReplaceHolyNames,
+   *   keyLibraryViewMode, keyAlignTabsToRight, keyCopyWithHeaders, keyCopyHeaderFormat
    *
    * @param {{ key:string }} payload
    */
@@ -786,7 +867,7 @@ const OtzariaPluginSDK = {
   'settings.getMany': null,
 
   // =========================================================================
-  // calendar.* Permission: calendar.read
+  // calendar.*   Permission: calendar.read
   // =========================================================================
 
   /** Get the currently-selected date (ISO 8601). */
@@ -811,16 +892,16 @@ const OtzariaPluginSDK = {
   /**
    * Get the Jewish date for the selected day.
     * @returns {JewishDate}
-    * {
-    * year: number,
-    * month: number,
-    * day: number,
-    * gregorian: string,
-    * monthName: string,
-    * isLeapYear: boolean,
-    * isShabbat: boolean,
-    * holidays: Array<{ text: string, kind: 'yomTov'|'roshChodesh'|'taanit'|'special' }>
-    * }
+    *   {
+    *     year: number,
+    *     month: number,
+    *     day: number,
+    *     gregorian: string,
+    *     monthName: string,
+    *     isLeapYear: boolean,
+    *     isShabbat: boolean,
+    *     holidays: Array<{ text: string, kind: 'yomTov'|'roshChodesh'|'taanit'|'special' }>
+    *   }
    */
   'calendar.getJewishDate': null,
 
@@ -832,34 +913,34 @@ const OtzariaPluginSDK = {
   'calendar.getEvents': null,
 
   // =========================================================================
-  // publishedData.* Permission: published_data.write
+  // publishedData.*  Permission: published_data.write
   // =========================================================================
 
   /**
    * Publish or update a record.
    *
    * Supported types: `calendar.event`, `saved.query`, `note.draft`,
-   * `reference.link`, `tool.badge`
+   *                  `reference.link`, `tool.badge`
    *
    * Scope:
-   * `'global'`             visible everywhere
-   * `'workspace:<id>'`     visible only in a specific workspace
-   * `'book:<bookId>'`      visible only when that book is open
+   *   `'global'`             visible everywhere
+   *   `'workspace:<id>'`     visible only in a specific workspace
+   *   `'book:<bookId>'`      visible only when that book is open
    *
    * @param {{ type:string, scope:string, key:string, payload:Object }} args
    * @returns {boolean}
    *
    * @example
    * await Otzaria.call('publishedData.upsert', {
-   * type:    'calendar.event',
-   * scope:   'global',
-   * key:     'myPlugin:sunset:2026-04-05',
-   * payload: {
-   * title:     'שקיעה',
-   * startsAt:  '2026-04-05T19:11:00+03:00',
-   * source:    'לוח שנה הלכתי',
-   * importance: 'high',
-   * },
+   *   type:    'calendar.event',
+   *   scope:   'global',
+   *   key:     'myPlugin:sunset:2026-04-05',
+   *   payload: {
+   *     title:     'שקיעה',
+   *     startsAt:  '2026-04-05T19:11:00+03:00',
+   *     source:    'לוח שנה הלכתי',
+   *     importance: 'high',
+   *   },
    * });
    */
   'publishedData.upsert': null,
@@ -877,7 +958,7 @@ const OtzariaPluginSDK = {
   'publishedData.listOwn': null,
 
   // =========================================================================
-  // feedback.* Permission: feedback.send_email
+  // feedback.*  Permission: feedback.send_email
   // =========================================================================
 
   /**
@@ -888,7 +969,7 @@ const OtzariaPluginSDK = {
   'feedback.sendEmail': null,
 
   // =========================================================================
-  // history.* Permission: history.read / history.write
+  // history.*  Permission: history.read / history.write
   // =========================================================================
 
   /**
@@ -919,7 +1000,7 @@ const OtzariaPluginSDK = {
   'history.remove': null,
 
   // =========================================================================
-  // notifications.* Permission: notifications.send / notifications.system
+  // notifications.*  Permission: notifications.send / notifications.system
   // =========================================================================
 
   /**
@@ -969,7 +1050,7 @@ const OtzariaPluginSDK = {
   'notifications.requestPermissions': null,
 
   // =========================================================================
-  // database.* Permission: database.read
+  // database.*  Permission: database.read
   // =========================================================================
 
   /**
@@ -1030,46 +1111,66 @@ if (typeof module !== 'undefined' && module.exports) {
             }, 300);
         }
 
-        function showMsg(title, content) {
+        function showMsg(title, content, isHtml) {
             document.getElementById('msg-title').innerHTML = title;
-            document.getElementById('msg-content').innerText = content;
+            const el = document.getElementById('msg-content');
+            if (isHtml) el.innerHTML = content;
+            else el.innerText = content;
             showModal('msg-modal');
         }
 
         const availablePermissions = [
-            { id: "reader.open", label: "פתיחת ספרים וניווט" },
+            { id: "app.info.read", label: "קריאת פרטי מערכת/משתמש" },
+            { id: "app.user_email.read", label: "גישה למייל המשתמש (לדיווח שגיאות)" },
             { id: "library.books.read", label: "קריאת מטא-דאטה מספרים" },
             { id: "library.content.read", label: "קריאת תוכן ספרים פנימי" },
             { id: "search.fulltext.read", label: "חיפוש בטקסט מלא" },
-            { id: "ui.feedback", label: "הצגת הודעות ודיאלוגים" },
-            { id: "plugin.storage.read", label: "קריאה מאחסון מקומי" },
-            { id: "plugin.storage.write", label: "כתיבה לאחסון מקומי" },
-            { id: "calendar.read", label: "גישה ללוח השנה והזמנים" },
-            { id: "settings.read", label: "קריאת הגדרות אפליקציה" },
+            { id: "reader.open", label: "פתיחת ספרים וניווט" },
             { id: "reader.highlight", label: "הדגשת טקסט בספרים" },
             { id: "reader.context_menu", label: "פריטים לתפריט קליק-ימני" },
-            { id: "events.subscribe:theme.changed", label: "האזנה לשינוי עיצוב (Dark/Light)" },
-            { id: "events.subscribe:reader.current_ref_changed", label: "מעקב אחר מיקום בקורא" },
-            { id: "app.info.read", label: "קריאת פרטי מערכת/משתמש" },
             { id: "navigation.write", label: "ניווט אוטומטי בין מסכים" },
             { id: "notes.read", label: "קריאת הערות אישיות" },
             { id: "notes.write", label: "עריכת ומחיקת הערות" },
+            { id: "calendar.read", label: "גישה ללוח השנה והזמנים" },
+            { id: "settings.read", label: "קריאת הגדרות אפליקציה" },
+            { id: "ui.feedback", label: "הצגת הודעות ודיאלוגים" },
+            { id: "plugin.storage.read", label: "קריאה מאחסון מקומי" },
+            { id: "plugin.storage.write", label: "כתיבה לאחסון מקומי" },
             { id: "published_data.write", label: "פרסום אירועים באפליקציה" },
+            { id: "network.access", label: "גישה לאינטרנט (טעינת משאבים חיצוניים)" },
             { id: "feedback.send_email", label: "שליחת משוב למייל" },
             { id: "history.read", label: "גישה להיסטוריית הלמידה" },
             { id: "history.write", label: "עריכה ומחיקה של היסטוריה" },
             { id: "notifications.send", label: "פופאפים/התראות פנים-אפליקציה" },
             { id: "notifications.system", label: "התראות מערכת מתוזמנות (OS)" },
-            { id: "database.read", label: "ביצוע שאילתות למסדי נתונים" }
+            { id: "database.read", label: "ביצוע שאילתות למסדי נתונים" },
+            { id: "events.subscribe:theme.changed", label: "האזנה לשינוי עיצוב (Dark/Light)" },
+            { id: "events.subscribe:navigation.changed", label: "האזנה לשינוי מסך פעיל" },
+            { id: "events.subscribe:reader.current_book_changed", label: "האזנה לשינוי ספר נוכחי" },
+            { id: "events.subscribe:reader.current_ref_changed", label: "מעקב אחר מיקום בקורא" },
+            { id: "events.subscribe:reader.selection_changed", label: "האזנה לסימון טקסט בקורא" },
+            { id: "events.subscribe:calendar.date_changed", label: "האזנה לשינוי תאריך בלוח" },
+            { id: "events.subscribe:settings.changed", label: "האזנה לשינוי הגדרות" },
+            { id: "events.subscribe:workspace.changed", label: "האזנה להחלפת סביבת עבודה" },
+            { id: "events.subscribe:plugin.permissions_changed", label: "האזנה לשינוי הרשאות התוסף" }
         ];
 
         const defaultChecked = ["ui.feedback", "events.subscribe:theme.changed"];
         const permsContainer = document.getElementById('permissions-list');
         const permCounter = document.getElementById('perm-counter');
-        
+
+        function isPermissionChecked(id) {
+            const cb = document.querySelector(`.perm-cb[value="${id}"]`);
+            return cb ? cb.checked : false;
+        }
+
         function updateCounter() {
             const count = document.querySelectorAll('.perm-cb:checked').length;
             permCounter.innerText = `${count} נבחרו`;
+            const wrap = document.getElementById('published-types-wrap');
+            if (wrap) {
+                wrap.classList.toggle('hidden', !isPermissionChecked('published_data.write'));
+            }
         }
 
         availablePermissions.forEach(p => {
@@ -1094,31 +1195,94 @@ if (typeof module !== 'undefined' && module.exports) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>תוסף לאוצריא</title>
-    <!-- Tailwind יורד אוטומטית כמשאב פנימי! -->
-    <script src="https://cdn.tailwindcss.com"><\/script>
     <style>
-        body { transition: background-color 0.3s, color 0.3s; }
+        :root {
+            --primary: #1976d2;
+            --on-primary: #ffffff;
+            --surface: #ffffff;
+            --on-surface: #1a1a1a;
+            --surface-container: #f3f4f6;
+            --outline: #cbd5e1;
+        }
+        * { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; height: 100%; }
+        body {
+            background: var(--surface);
+            color: var(--on-surface);
+            font-family: var(--font-family, system-ui, sans-serif);
+            font-size: var(--font-size, 16px);
+            line-height: var(--line-height, 1.5);
+            transition: background-color .25s, color .25s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .card {
+            background: var(--surface-container);
+            color: var(--on-surface);
+            border: 1px solid var(--outline);
+            border-radius: 1rem;
+            padding: 2rem;
+            text-align: center;
+            max-width: 32rem;
+            width: 100%;
+        }
+        h2 { color: var(--primary); margin: 0 0 1rem; }
+        p  { margin: 0 0 1.5rem; opacity: .85; }
+        button {
+            background: var(--primary);
+            color: var(--on-primary);
+            border: none;
+            border-radius: .75rem;
+            padding: .75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:active { transform: scale(.98); }
     </style>
 </head>
-<body class="bg-slate-50 font-sans text-slate-800 min-h-screen flex flex-col items-center justify-center p-4">
+<body>
 
-    <div class="bg-white rounded-2xl shadow-xl border border-indigo-100 overflow-hidden hover:shadow-2xl transition-shadow duration-300 p-8 text-center max-w-lg w-full">
-        <h2 class="text-3xl font-bold text-indigo-700 mb-4">שלום עולם! 👋</h2>
-        <p class="text-slate-600 mb-8 text-lg">
-            זהו תוסף בסיסי לדוגמה. לחץ על הכפתור כדי לבדוק תקשורת.
-        </p>
-        <button onclick="testOtzaria()" class="bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-3 rounded-xl font-bold shadow-md transition-all active:scale-95 w-full">
-            הקפץ הודעת אישור
-        </button>
+    <div class="card">
+        <h2>שלום עולם!</h2>
+        <p>זהו תוסף בסיסי לדוגמה. הצבעים מגיעים מערכת הנושא של אוצריא.</p>
+        <button onclick="testOtzaria()">הקפץ הודעת אישור</button>
     </div>
 
     <script>
+        // עיצוב התוסף חייב להגיע מ-API של אוצריא, לא לקודד צבעים ישירות.
+        function applyTheme(theme) {
+            if (!theme || !theme.colorScheme) return;
+            const cs = theme.colorScheme;
+            const r = document.documentElement.style;
+            r.setProperty('--primary', cs.primary);
+            r.setProperty('--on-primary', cs.onPrimary);
+            r.setProperty('--surface', cs.surface);
+            r.setProperty('--on-surface', cs.onSurface);
+            r.setProperty('--surface-container', cs.surfaceContainerHighest || cs.surface);
+            r.setProperty('--outline', cs.outline);
+            if (theme.typography) {
+                if (theme.typography.fontFamily) r.setProperty('--font-family', theme.typography.fontFamily + ', system-ui, sans-serif');
+                if (theme.typography.fontSize)   r.setProperty('--font-size',   theme.typography.fontSize + 'px');
+                if (theme.typography.lineHeight) r.setProperty('--line-height', theme.typography.lineHeight);
+            }
+        }
+
         function testOtzaria() {
             if (window.Otzaria) {
                 Otzaria.call('ui.showSuccess', { message: 'מעולה! מחובר לאוצריא!' });
             } else {
                 alert('יש להפעיל מתוך האפליקציה.');
             }
+        }
+
+        if (window.Otzaria) {
+            Otzaria.on('plugin.boot',     payload => applyTheme(payload.theme));
+            Otzaria.on('theme.changed',   theme   => applyTheme(theme));
         }
     <\/script>
 </body>
@@ -1138,6 +1302,58 @@ if (typeof module !== 'undefined' && module.exports) {
                 document.getElementById('code-editor').value = e.target.result;
             };
             reader.readAsText(file);
+        });
+
+        // ----- Extra files (CSS/JS/TS/fonts/etc.) bundled into the plugin zip -----
+        const extraFiles = new Map(); // name -> File
+
+        function formatBytes(b) {
+            if (b < 1024) return b + ' B';
+            if (b < 1024 * 1024) return (b / 1024).toFixed(1) + ' KB';
+            return (b / 1024 / 1024).toFixed(2) + ' MB';
+        }
+
+        function renderExtraFiles() {
+            const list = document.getElementById('extra-files-list');
+            if (extraFiles.size === 0) {
+                list.innerHTML = '<div class="text-xs text-slate-400 italic py-2">לא נוספו קבצים. הקבצים שתוסיף יהיו זמינים בנתיב יחסי מתוך index.html.</div>';
+                return;
+            }
+            list.innerHTML = '';
+            for (const [name, file] of extraFiles) {
+                const row = document.createElement('div');
+                row.className = 'flex items-center justify-between gap-3 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2';
+                row.innerHTML = `
+                    <div class="flex items-center gap-2 min-w-0 flex-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-amber-600 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        <span class="code-font text-xs text-slate-800 truncate" dir="ltr" title="${name}">${name}</span>
+                        <span class="text-[10px] text-slate-500 shrink-0">${formatBytes(file.size)}</span>
+                    </div>
+                    <button type="button" data-name="${name}" class="extra-remove text-rose-600 hover:text-rose-800 text-xs font-bold px-2">
+                        הסר
+                    </button>
+                `;
+                list.appendChild(row);
+            }
+            list.querySelectorAll('.extra-remove').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    extraFiles.delete(btn.dataset.name);
+                    renderExtraFiles();
+                });
+            });
+        }
+        renderExtraFiles();
+
+        document.getElementById('extra-files-upload').addEventListener('change', function (e) {
+            for (const f of e.target.files) {
+                if (f.name === 'manifest.json' || f.name === 'index.html' || f.name === 'otzaria_plugin.js') {
+                    showMsg('שם קובץ שמור', `הקובץ "${f.name}" נוצר אוטומטית על ידי הכלי. בחר שם אחר.`);
+                    continue;
+                }
+                extraFiles.set(f.name, f);
+            }
+            renderExtraFiles();
+            e.target.value = '';
         });
 
         function updateStatus(msg) {
@@ -1183,11 +1399,27 @@ if (typeof module !== 'undefined' && module.exports) {
                 }
             };
 
+            const pId = (document.getElementById('p-id').value || '').trim();
+            const pVersion = (document.getElementById('p-version').value || '').trim();
+            const pMinAppVersion = (document.getElementById('p-minappversion').value || '').trim();
+
+            if (!/^[a-z0-9_.-]+$/.test(pId)) {
+                showMsg('מזהה תוסף לא חוקי', 'מזהה (id) חייב להכיל רק אותיות קטנות באנגלית, ספרות, נקודות, מקפים וקווים תחתונים.\nלדוגמה: com.mycompany.my-plugin');
+                return;
+            }
+            if (!/^\d+\.\d+\.\d+(?:\+.*)?$/.test(pVersion)) {
+                showMsg('גרסה לא חוקית', 'גרסה (version) חייבת להיות בפורמט SemVer: major.minor.patch\nלדוגמה: 1.0.0');
+                return;
+            }
+            if (!/^\d+\.\d+\.\d+$/.test(pMinAppVersion)) {
+                showMsg('minAppVersion לא חוקי', 'גרסת אוצריא מינימלית חייבת להיות בפורמט major.minor.patch\nלדוגמה: 0.9.0');
+                return;
+            }
+
             setBtnState(true);
             updateStatus('מתחיל באריזת התוסף...');
 
             try {
-                const pId = document.getElementById('p-id').value || 'com.example.plugin';
                 let htmlCode = document.getElementById('code-editor').value;
                 const zip = new JSZip();
                 
@@ -1378,32 +1610,54 @@ if (typeof module !== 'undefined' && module.exports) {
                     const boilerplate = `
     <!-- Otzaria Integration Boilerplate -->
     <script>
-        function applyOtzariaTheme(theme) {
-            if (!theme || !theme.colorScheme) return;
-            const root = document.documentElement;
-            root.style.setProperty('--primary', theme.colorScheme.primary);
-            root.style.setProperty('--surface', theme.colorScheme.surface);
-            root.style.setProperty('--on-surface', theme.colorScheme.onSurface);
-            
-            if (theme.mode === 'dark') {
-                document.body.classList.add('dark');
-                document.body.style.backgroundColor = theme.colorScheme.surface;
-                document.body.style.color = theme.colorScheme.onSurface;
-            } else {
-                document.body.classList.remove('dark');
-                document.body.style.backgroundColor = '';
-                document.body.style.color = '';
+        (function () {
+            function applyOtzariaTheme(theme) {
+                if (!theme) return;
+                const root = document.documentElement;
+                const cs = theme.colorScheme || {};
+                const map = {
+                    '--primary': cs.primary,
+                    '--on-primary': cs.onPrimary,
+                    '--secondary': cs.secondary,
+                    '--on-secondary': cs.onSecondary,
+                    '--surface': cs.surface,
+                    '--on-surface': cs.onSurface,
+                    '--surface-container-highest': cs.surfaceContainerHighest,
+                    '--surface-container': cs.surfaceContainerHighest,
+                    '--error': cs.error,
+                    '--on-error': cs.onError,
+                    '--outline': cs.outline
+                };
+                Object.keys(map).forEach(function (k) {
+                    if (map[k]) root.style.setProperty(k, map[k]);
+                });
+
+                if (theme.mode === 'dark') {
+                    document.body.classList.add('dark');
+                    document.documentElement.classList.add('dark');
+                } else {
+                    document.body.classList.remove('dark');
+                    document.documentElement.classList.remove('dark');
+                }
+                if (cs.surface)   document.body.style.backgroundColor = cs.surface;
+                if (cs.onSurface) document.body.style.color = cs.onSurface;
+
+                const t = theme.typography || {};
+                if (t.fontFamily) {
+                    root.style.setProperty('--font-family', "'" + t.fontFamily + "', system-ui, sans-serif");
+                    document.body.style.fontFamily = "'" + t.fontFamily + "', system-ui, sans-serif";
+                }
+                if (t.fontSize)   root.style.setProperty('--font-size',   t.fontSize + 'px');
+                if (t.lineHeight) root.style.setProperty('--line-height', t.lineHeight);
+                if (t.commentatorsFontFamily) root.style.setProperty('--commentators-font-family', "'" + t.commentatorsFontFamily + "', system-ui, sans-serif");
+                if (t.commentatorsFontSize)   root.style.setProperty('--commentators-font-size',   t.commentatorsFontSize + 'px');
             }
 
-            if (theme.typography && theme.typography.fontFamily) {
-                document.body.style.fontFamily = "'" + theme.typography.fontFamily + "', sans-serif";
+            if (window.Otzaria) {
+                Otzaria.on('plugin.boot',   function (payload) { applyOtzariaTheme(payload.theme); });
+                Otzaria.on('theme.changed', function (theme)   { applyOtzariaTheme(theme); });
             }
-        }
-
-        if (window.Otzaria) {
-            Otzaria.on('plugin.boot', function(payload) { applyOtzariaTheme(payload.theme); });
-            Otzaria.on('theme.changed', function(theme) { applyOtzariaTheme(theme); });
-        }
+        })();
     <\/script>
 `;
                     htmlCode = htmlCode.replace('</body>', boilerplate + '\n</body>');
@@ -1411,32 +1665,49 @@ if (typeof module !== 'undefined' && module.exports) {
 
                 updateStatus('אורז סופית את כל הקבצים ל-ZIP...');
                 
+                const permissions = Array.from(document.querySelectorAll('.perm-cb:checked')).map(cb => cb.value);
+                const wantsNetwork = permissions.includes('network.access');
+                const homepage = (document.getElementById('p-homepage').value || '').trim();
+                const stability = document.getElementById('p-stability').value || 'beta';
+                const tabOrder = parseInt(document.getElementById('t-order').value);
+
+                const publishedTypesRaw = (document.getElementById('p-published-types').value || '').trim();
+                const publishedDataTypes = permissions.includes('published_data.write') && publishedTypesRaw
+                    ? publishedTypesRaw.split(',').map(s => s.trim()).filter(Boolean)
+                    : [];
+
                 const manifest = {
                     schemaVersion: 1,
                     id: pId,
                     name: document.getElementById('p-name').value || 'My Plugin',
-                    version: document.getElementById('p-version').value || '1.0.0',
+                    version: pVersion,
                     description: document.getElementById('p-desc').value || '',
                     author: document.getElementById('p-author').value || '',
+                    stability: stability,
                     entrypoint: "index.html",
-                    minAppVersion: "0.9.0",
+                    minAppVersion: pMinAppVersion,
                     sdkVersion: "1.x",
-                    permissions: Array.from(document.querySelectorAll('.perm-cb:checked')).map(cb => cb.value),
-                    network: { enabled: true, allowlist: [] },
+                    permissions: permissions,
+                    network: { enabled: wantsNetwork, allowlist: [] },
                     contributes: {
                         toolTab: {
                             title: document.getElementById('t-title').value || 'Tab',
-                            order: 100,
+                            order: Number.isFinite(tabOrder) ? tabOrder : 100,
                             defaultPinned: true,
-                            iconCodepoint: parseInt(document.getElementById('t-icon').value) || 63742,
-                            iconVariant: "regular"
-                        }
+                            iconName: document.getElementById('t-icon').value.trim() || 'book_24_regular'
+                        },
+                        publishedDataTypes: publishedDataTypes
                     }
                 };
+                if (homepage) manifest.homepage = homepage;
 
                 zip.file("manifest.json", JSON.stringify(manifest, null, 2));
                 zip.file("index.html", htmlCode);
                 zip.file("otzaria_plugin.js", document.getElementById('otzaria-plugin-js-source').textContent);
+
+                for (const [name, file] of extraFiles) {
+                    zip.file(name, file);
+                }
 
                 const blob = await zip.generateAsync({ type: "blob" });
                 const url = window.URL.createObjectURL(blob);
@@ -1451,11 +1722,28 @@ if (typeof module !== 'undefined' && module.exports) {
 
                 updateStatus('');
                 
+                const uploadCta = `
+                    <div class="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-xl text-sm text-slate-700 leading-relaxed">
+                        <div class="font-bold text-blue-800 mb-1">רוצה לשתף את התוסף שלך?</div>
+                        העלה אותו לחנות התוספים הרשמית של אוצריא, כדי שכל המשתמשים יוכלו ליהנות:<br>
+                        <a href="https://otzaria.org/plugins/upload" target="_blank" class="inline-block mt-2 font-bold text-blue-700 hover:text-blue-900 underline code-font" dir="ltr">
+                            otzaria.org/plugins/upload &nearr;
+                        </a>
+                    </div>
+                `;
                 const unresolvedCount = failedItems.filter((_, i) => !document.getElementById(`manual-file-${i}`)?.files.length).length;
                 if (unresolvedCount > 0) {
-                    showMsg('התוסף נארז בהצלחה, אבל...', `דילגת על הורדה של ${unresolvedCount} קבצים.\nהקוד נשאר עם הקישור המקורי והתוסף יצטרך חיבור לאינטרנט כדי לטעון אותם במלואם.`);
+                    showMsg(
+                        'התוסף נארז בהצלחה, אבל...',
+                        `<div>דילגת על הורדה של ${unresolvedCount} קבצים. הקוד נשאר עם הקישור המקורי והתוסף יצטרך חיבור לאינטרנט כדי לטעון אותם במלואם.</div>${uploadCta}`,
+                        true
+                    );
                 } else {
-                    showMsg('התוסף נארז בהצלחה! 🎉', 'קובץ ה-otzplugin מוכן כעת ויתפקד בצורה מושלמת גם כשתהיה מנותק לגמרי מהרשת.');
+                    showMsg(
+                        'התוסף נארז בהצלחה! 🎉',
+                        `<div>קובץ ה-otzplugin מוכן כעת ויתפקד בצורה מושלמת גם כשתהיה מנותק לגמרי מהרשת.</div>${uploadCta}`,
+                        true
+                    );
                 }
 
             } catch (error) {
